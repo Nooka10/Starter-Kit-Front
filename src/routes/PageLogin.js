@@ -1,7 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import FormLogin from '../components/FormLogin';
+import { AuthContext } from '../providers/AuthProvider';
 
 const styles = theme => ({
   root: {
@@ -15,18 +17,33 @@ const styles = theme => ({
 });
 
 const PageLogin = ({ classes, history }) => {
-  const handleSubmit = (values) => {
-    console.log('submitting formValues', values);
-    history.push('/');
-  };
-
   return (
-    <div className={classes.root}>
-      <FormLogin
-        className={classes.form}
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <AuthContext >
+      {({ login, error, user }) => {
+        if (user) {
+          return <Redirect to = "/" />;
+        }
+
+        const handleSubmit = async(values) => {
+          try {
+            console.log('submitting formValues', values);
+            await login(values);
+          } catch (err) {
+            // FIXME: gérer l'erreur... et l'afficher dans le Form...
+          }
+          history.push('/');
+        };
+
+        return (
+          <div className = {classes.root} >
+            <FormLogin
+              className = {classes.form}
+              onSubmit = {handleSubmit}
+            />
+          </div >
+        );
+      }}
+    </AuthContext >
   );
 };
 

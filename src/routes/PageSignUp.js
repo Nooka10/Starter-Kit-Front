@@ -1,7 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import FormSignUp from '../components/FormSignUp';
+import { AuthContext } from '../providers/AuthProvider';
 
 const styles = theme => ({
   root: {
@@ -15,18 +17,29 @@ const styles = theme => ({
 });
 
 const PageSignUp = ({ classes, history }) => {
-  const handleSubmit = (values) => {
-    console.log('submitting formValues', values);
-    history.push('/');
-  };
 
   return (
-    <div className={classes.root}>
-      <FormSignUp
-        className={classes.form}
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <AuthContext >
+      {({ signUp, user }) => {
+        if (user) {
+          return <Redirect to = "/" />;
+        }
+
+        const handleSubmit = async({ firstname, lastname, email, password }) => {
+          console.log('submitting formValues', { firstname, lastname, email, password });
+          await signUp({ firstname, lastname, email, password });
+        };
+
+        return (
+          <div className = {classes.root} >
+            <FormSignUp
+              className = {classes.form}
+              onSubmit = {handleSubmit}
+            />
+          </div >
+        );
+      }}
+    </AuthContext >
   );
 };
 
