@@ -16,8 +16,8 @@ const styles = theme => ({
   },
 });
 
-const PageLogin = ({ classes, history }) => {
-  return (
+const PageLogin = ({ classes, history }) =>
+  (
     <AuthContext >
       {({ login, error, user }) => {
         if (user) {
@@ -45,7 +45,6 @@ const PageLogin = ({ classes, history }) => {
       }}
     </AuthContext >
   );
-};
 
 PageLogin.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),

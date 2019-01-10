@@ -33,10 +33,10 @@ const styles = theme => ({
   },
 });
 
-const ProfileCard = ({ classes, displayName, username, avatarUrl, profileUrl, coverUrl, stats }) => {
+const ProfileCard = ({ classes, displayName, email, avatarUrl, profileUrl, coverUrl, stats }) => {
   const backgroundStyle = coverUrl
-    ? { backgroundImage: `url('${coverUrl}')` }
-    : null;
+                          ? { backgroundImage: `url('${coverUrl}')` }
+                          : null;
 
   return (
     <Paper elevation={1} className={classes.root}>
@@ -50,7 +50,7 @@ const ProfileCard = ({ classes, displayName, username, avatarUrl, profileUrl, co
             <Link to={profileUrl}>{displayName}</Link>
           </Typography>
           <Typography variant="body2" color="textSecondary">
-            <Link to={profileUrl}>@{username}</Link>
+            <Link to={profileUrl}>{email}</Link>
           </Typography>
         </div>
       </div>
@@ -66,7 +66,7 @@ const ProfileCard = ({ classes, displayName, username, avatarUrl, profileUrl, co
 ProfileCard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
   displayName: PropTypes.string,
-  username: PropTypes.string,
+  email: PropTypes.string,
   avatarUrl: PropTypes.string,
   coverUrl: PropTypes.string,
   profileUrl: PropTypes.string,

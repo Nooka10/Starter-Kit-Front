@@ -31,6 +31,23 @@ const queryGetMe = gql`
             firstname
             lastname
             email
+            watchList{
+                id
+                vote_count
+                video
+                vote_average
+                title
+                popularity
+                poster_path
+                original_language
+                original_title
+                backdrop_path
+                adult
+                overview
+                release_date
+                tmdb_id
+                genres
+            }
         }
     }
 `;

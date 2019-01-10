@@ -19,12 +19,12 @@ const styles = theme => ({
   },
 });
 
-const PostCard = ({ classes, className, children, title, subtitle, imageUrl, avatarUrl, body }) => (
+const PostCard = ({ classes, className, children, title, releaseDate, imageUrl, avatarUrl, overview}) => (
   <Card className={className}>
     <CardHeader
       avatar={<Avatar src={avatarUrl} />}
       title={title}
-      subheader={subtitle}
+      subheader={releaseDate}
     />
     <CardMedia
       className={classes.media}
@@ -33,7 +33,7 @@ const PostCard = ({ classes, className, children, title, subtitle, imageUrl, ava
     />
     <CardContent>
       <Typography component="p">
-        {body}
+        {overview}
       </Typography>
     </CardContent>
     <CardActions>
@@ -52,10 +52,10 @@ PostCard.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   title: PropTypes.string,
-  subtitle: PropTypes.string,
+  releaseDate: PropTypes.string,
   imageUrl: PropTypes.string,
   avatarUrl: PropTypes.string,
-  body: PropTypes.string,
+  overview: PropTypes.string,
 };
 
 export default withStyles(styles)(PostCard);
