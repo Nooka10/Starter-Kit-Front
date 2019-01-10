@@ -44,7 +44,7 @@ const PageProfile = ({ classes }) => (
             <Grid container spacing = {24} >
               {user.watchList.map(movie => {
                   return (
-                    <Grid item xs = {12} sm = {6} md = {4} >
+                    <Grid item xs = {12} sm = {6} md = {4} key = {movie.id} >
                       <PostCard
                         className = {classes.post}
                         title = {movie.title}

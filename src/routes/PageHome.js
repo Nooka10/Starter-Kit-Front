@@ -34,6 +34,7 @@ const PageHome = ({ classes }) => (
         >
           {user.watchList.map(movie => {
               return (<PostCard
+                key={movie.id}
                 className = {classes.post}
                 title = {movie.title}
                 releaseDate = {movie.release_date}
