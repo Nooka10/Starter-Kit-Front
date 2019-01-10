@@ -22,7 +22,7 @@ const PageHome = ({ classes }) => (
               displayName = {user.firstname + ' ' + user.lastname}
               email = {user.email}
               avatarUrl = "https://source.unsplash.com/collection/895539"
-              profileUrl = "/profile/paulnta"
+              profileUrl = {'/profile/' + user.email}
               coverUrl = "https://source.unsplash.com/collection/841904"
               stats = {{
                 posts: 112,
@@ -32,14 +32,13 @@ const PageHome = ({ classes }) => (
             />
           }
         >
-          {console.log(user.watchList)}
           {user.watchList.map(movie => {
               return (<PostCard
                 className = {classes.post}
                 title = {movie.title}
                 releaseDate = {movie.release_date}
                 imageUrl = {'https://image.tmdb.org/t/p/w500/' + movie.poster_path}
-                avatarUrl = "https://source.unsplash.com/b1Hg7QI-zcc/150x150"
+                avatarUrl = {'https://image.tmdb.org/t/p/w500/' + movie.poster_path}
                 overview = {movie.overview}
               />);
             }
